@@ -9,6 +9,7 @@ class Stock
 private:
     string ticker;
     string company;
+    int lotId;
     int nShares;
     double buyPrice;
     double currentPrice;
@@ -21,6 +22,7 @@ public:
     bool operator!=(const Stock &other) const;
     string getTicker(void) const;
     string getCompany(void) const;
+    int getLotId(void) const;
     int getShares(void) const;
     double getCurrentPrice(void) const;
     void setCurrentPrice(double price);

@@ -1,5 +1,6 @@
 #include <iomanip>
 #include <iostream>
+#include <cmath>
 #include "Stock.h"
 
 using namespace std;
@@ -11,6 +12,8 @@ Stock::Stock(string ticker, string company, int shares, double buyPrice, double 
     this->nShares = shares;
     this->buyPrice = buyPrice;
     this->currentPrice = nowPrice;
+    // Lot ID to be initialized to some random 4-digit number
+    this->lotId = rand() % 10000;
     // ROI and profit to be updated whenever the stock is queried
     this->roi = 0.0;
     this->profit = 0.0;
@@ -24,6 +27,11 @@ string Stock::getTicker(void) const
 string Stock::getCompany(void) const
 {
     return this->company;
+}
+
+int Stock::getLotId(void) const
+{
+    return this->lotId;
 }
 
 int Stock::getShares(void) const
@@ -65,7 +73,7 @@ bool Stock::operator!=(const Stock &other) const
 
 ostream &operator<<(ostream &os, Stock &stock)
 {
-    os << setw(10) << left << stock.ticker << setw(12) << stock.company << setw(8) << stock.nShares << setw(10) << fixed << setprecision(2) << stock.buyPrice << setw(10) << stock.currentPrice << setw(8) << stock.getRoi() << setw(8) << stock.getProfit();
+    os << setw(10) << left << stock.ticker << setw(12) << stock.company << setw(8) << stock.lotId << setw(8) << stock.nShares << setw(10) << fixed << setprecision(2) << stock.buyPrice << setw(10) << stock.currentPrice << setw(8) << stock.getRoi() << setw(8) << stock.getProfit();
 
     return os;
 }
